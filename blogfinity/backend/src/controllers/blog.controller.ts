@@ -1,11 +1,22 @@
 import { RequestHandler } from "express";
 import BlogModel from "../models/blog.model";
 
-export const getBlog: RequestHandler = async (req, res, next) => {
+export const getBlogs: RequestHandler = async (req, res, next) => {
   try {
     //throw Error("Test Error");
     const blogs = await BlogModel.find().exec();
     res.status(200).json(blogs);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getBlog: RequestHandler = async (req, res, next) => {
+  const blogId = req.params.blogId;
+
+  try {
+    const blog = await BlogModel.findById(blogId).exec();
+    res.status(200).json(blog);
   } catch (error) {
     next(error);
   }
