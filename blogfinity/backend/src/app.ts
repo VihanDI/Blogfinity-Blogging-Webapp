@@ -1,19 +1,10 @@
 import "dotenv/config";
 import express, { NextFunction, Request, Response } from "express";
-
-import BlogModel from "./models/blog.model";
+import BlogRoute from "./routes/blog.route";
 
 const app = express();
 
-app.get("/", async (req, res, next) => {
-  try {
-    //throw Error("Test Error");
-    const blogs = await BlogModel.find().exec();
-    res.status(200).json(blogs);
-  } catch (error) {
-    next(error);
-  }
-});
+app.use("/api/blogs", BlogRoute);
 
 app.use((req, res, next) => {
   next(Error("Endpoint not found"));
