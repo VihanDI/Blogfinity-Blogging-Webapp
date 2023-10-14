@@ -1,4 +1,4 @@
-import { InferSchemaType, Schema } from "mongoose";
+import { InferSchemaType, Schema, model } from "mongoose";
 
 const blogSchema = new Schema(
   {

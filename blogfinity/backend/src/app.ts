@@ -1,10 +1,13 @@
 import "dotenv/config";
 import express from "express";
 
+import BlogModel from "./models/blog.model";
+
 const app = express();
 
-app.get("/", (req, res) => {
-  res.send("Hello World");
+app.get("/", async (req, res) => {
+  const blogs = await BlogModel.find().exec();
+  res.status(200).json(blogs);
 });
 
 export default app;
