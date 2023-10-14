@@ -4,12 +4,18 @@ import BlogRoute from "./routes/blog.route";
 
 const app = express();
 
+//for sending json to the express server
+app.use(express.json());
+
+//passing all the blog related routes to the blog route handler
 app.use("/api/blogs", BlogRoute);
 
+//middleware for handling invalid routes
 app.use((req, res, next) => {
   next(Error("Endpoint not found"));
 });
 
+//middleware for handling errors
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 app.use((error: unknown, req: Request, res: Response, next: NextFunction) => {
   console.error(error);

@@ -10,3 +10,19 @@ export const getBlog: RequestHandler = async (req, res, next) => {
     next(error);
   }
 };
+
+export const createBlog: RequestHandler = async (req, res, next) => {
+  const title = req.body.title;
+  const content = req.body.content;
+
+  try {
+    const newBlog = await BlogModel.create({
+      title: title,
+      content: content,
+    });
+
+    res.status(201).json(newBlog);
+  } catch (error) {
+    next(error);
+  }
+};
