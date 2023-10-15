@@ -54,12 +54,67 @@ export const createBlog: RequestHandler<
       throw createHttpError(400, "Blog must have a title");
     }
 
+    if (!content) {
+      throw createHttpError(400, "Blog must have a content");
+    }
+
     const newBlog = await BlogModel.create({
       title: title,
       content: content,
     });
 
     res.status(201).json(newBlog);
+  } catch (error) {
+    next(error);
+  }
+};
+
+interface UpdateBlogParams {
+  blogId: string;
+}
+
+interface UpdateBlogBody {
+  title?: string;
+  content?: string;
+}
+
+export const updateBlog: RequestHandler<
+  UpdateBlogParams,
+  unknown,
+  UpdateBlogBody,
+  unknown
+> = async (req, res, next) => {
+  const blogId = req.params.blogId;
+  const newTitle = req.body.title;
+  const newContent = req.body.content;
+
+  try {
+    //checking fot the validity of the blogId
+    if (!mongoose.isValidObjectId(blogId)) {
+      throw createHttpError(400, "Invalid blog Id");
+    }
+
+    if (!newTitle) {
+      throw createHttpError(400, "Blog must have a title");
+    }
+
+    if (!newContent) {
+      throw createHttpError(400, "Blog must have a content");
+    }
+
+    const blog = await BlogModel.findById(blogId).exec();
+
+    //handling errors of the object not found in the database
+    if (!blog) {
+      throw createHttpError(404, "Blog not found");
+    }
+
+    blog.title = newTitle;
+    blog.content = newContent;
+
+    const updatedBlog = await blog.save();
+
+    res.status(200).json(updatedBlog);
   } catch (error) {
     next(error);
   }
