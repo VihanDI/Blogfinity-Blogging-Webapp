@@ -119,3 +119,27 @@ export const updateBlog: RequestHandler<
     next(error);
   }
 };
+
+export const deleteBlog: RequestHandler = async (req, res, next) => {
+  const blogId = req.params.blogId;
+
+  try {
+    //checking fot the validity of the blogId
+    if (!mongoose.isValidObjectId(blogId)) {
+      throw createHttpError(400, "Invalid blog Id");
+    }
+
+    const blog = await BlogModel.findById(blogId).exec();
+
+    //handling errors of the object not found in the database
+    if (!blog) {
+      throw createHttpError(404, "Blog not found");
+    }
+
+    await BlogModel.findByIdAndDelete(blogId);
+
+    res.sendStatus(204);
+  } catch (error) {
+    next(error);
+  }
+};
