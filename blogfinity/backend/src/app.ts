@@ -6,6 +6,12 @@ import BlogRoute from "./routes/blog.route";
 
 const app = express();
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const cors = require("cors");
+
+//middleware for cors
+app.use(cors());
+
 //middleware for logging
 app.use(morgan("dev"));
 
