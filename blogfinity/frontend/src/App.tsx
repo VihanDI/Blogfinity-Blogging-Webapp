@@ -25,7 +25,7 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
+    <div className="blogCardView">
       {blogs.map((blog) => (
         <Blog blog={blog} key={blog._id}></Blog>
       ))}
