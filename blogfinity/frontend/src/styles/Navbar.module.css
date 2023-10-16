@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500&display=swap');
+
+.navbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #BEADFA;
+    height: 50px;
+    border-style: solid;
+    border-color: #BEADFA;
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    border-width: 1px;
+    margin-bottom: 2rem;
+}
+
+.title{
+    display: flex;
+    margin-left: 1rem;
+}
+
+.titilePartOne{
+    font-family: 'Saira Condensed', sans-serif;
+    font-weight: 800;
+    font-size: x-large;
+    text-decoration: none;
+    color: black;
+}
+
+.titilePartTwo{
+    font-family: 'Saira Condensed', sans-serif;
+    font-weight: 500;
+    font-size: x-large;
+    text-decoration: none;
+    color: black;
+}
+
+.navbarTabs{
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+}
+
+.navbarTab{
+    font-family: 'Saira Condensed', sans-serif;
+    font-weight: 500;
+    color: black;
+    font-size: larger;
+    text-decoration: none;
+    margin: 1rem;
+}
+
+.navbarTab:hover{
+    color: #713ABE;
+}
+
+.menuIcon{
+    color: black;
+    width: 30px;
+    height: 30px;
+    margin: 1rem;
+}
+
+.menuIcon:hover{
+    color: #713ABE;
+}
