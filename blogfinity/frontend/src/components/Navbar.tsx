@@ -6,6 +6,11 @@ const Navbar = () => {
   return (
     <div className={styles.navbar}>
       <div className={styles.title}>
+        <img
+          className={styles.navbarLogo}
+          src="src\assets\images\logoblack.png"
+          alt="Logo"
+        />
         <Link className={styles.titilePartOne} to={"/"}>
           BLOG
         </Link>

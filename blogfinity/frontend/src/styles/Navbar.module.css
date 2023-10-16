@@ -18,7 +18,14 @@
 
 .title{
     display: flex;
-    margin-left: 1rem;
+    margin-left: 4rem;
+    align-items: center;
+}
+
+.navbarLogo{
+    width: 25px;
+    height: 30px;
+    margin-right: 5px;
 }
 
 .titilePartOne{
