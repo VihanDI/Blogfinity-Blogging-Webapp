@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import { BlogModel } from "./models/blog.model";
+import Blog from "./components/Blog";
 
 function App() {
   const [blogs, setBlogs] = useState<BlogModel[]>([]);
@@ -23,7 +24,13 @@ function App() {
     loadBlogs();
   }, []);
 
-  return <div className="App">{JSON.stringify(blogs)}</div>;
+  return (
+    <div className="App">
+      {blogs.map((blog) => (
+        <Blog blog={blog} key={blog._id}></Blog>
+      ))}
+    </div>
+  );
 }
 
 export default App;
