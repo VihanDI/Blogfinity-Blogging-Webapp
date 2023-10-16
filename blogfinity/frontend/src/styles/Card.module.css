@@ -12,6 +12,10 @@
     height: fit-content;
 }
 
+.cardBody{
+    overflow: hidden;
+}
+
 .cardImage{
     width: 100%;
     border-radius: 1rem 1rem 0 0;

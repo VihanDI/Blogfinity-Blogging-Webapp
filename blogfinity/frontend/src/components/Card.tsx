@@ -15,16 +15,18 @@ const Card = ({
 }: CardProps) => {
   return (
     <div className={styles.cardContainer}>
-      {cardImgSrc && (
-        <img className={styles.cardImage} src={cardImgSrc} alt="Card Image" />
-      )}
-      <h2 className={styles.cardTitle}>{cardTitle}</h2>
-      <p className={styles.cardContent}>{cardContent}</p>
-      {cardBtnText && (
-        <a className={styles.cardLink} href="cardPage">
-          {cardBtnText}
-        </a>
-      )}
+      <div className={styles.cardBody}>
+        {cardImgSrc && (
+          <img className={styles.cardImage} src={cardImgSrc} alt="Card Image" />
+        )}
+        <h2 className={styles.cardTitle}>{cardTitle}</h2>
+        <p className={styles.cardContent}>{cardContent}</p>
+        {cardBtnText && (
+          <a className={styles.cardLink} href="cardPage">
+            {cardBtnText}
+          </a>
+        )}
+      </div>
     </div>
   );
 };
