@@ -9,7 +9,12 @@ const Blog = ({ blog }: BlogProps) => {
   const { title, content } = blog;
   return (
     <div>
-      <Card cardTitle={title} cardContent={content}></Card>
+      <Card
+        cardTitle={title}
+        cardContent={content}
+        cardImgSrc="https://picsum.photos/500/200"
+        cardBtnText=""
+      ></Card>
     </div>
   );
 };

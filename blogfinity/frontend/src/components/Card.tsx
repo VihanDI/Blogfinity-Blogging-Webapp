@@ -1,15 +1,30 @@
+import styles from "../styles/Card.module.css";
+
 interface CardProps {
   cardTitle: string;
   cardContent: string;
+  cardImgSrc: string;
+  cardBtnText: string;
 }
 
-const Card = ({ cardTitle, cardContent }: CardProps) => {
+const Card = ({
+  cardTitle,
+  cardContent,
+  cardImgSrc,
+  cardBtnText,
+}: CardProps) => {
   return (
-    <div className="Card">
-      <img src="https://picsum.photos/300/200" alt="Card Image" />
-      <h1>{cardTitle}</h1>
-      <p>{cardContent}</p>
-      <a href="cardPage">Learn More</a>
+    <div className={styles.cardContainer}>
+      {cardImgSrc && (
+        <img className={styles.cardImage} src={cardImgSrc} alt="Card Image" />
+      )}
+      <h2 className={styles.cardTitle}>{cardTitle}</h2>
+      <p className={styles.cardContent}>{cardContent}</p>
+      {cardBtnText && (
+        <a className={styles.cardLink} href="cardPage">
+          {cardBtnText}
+        </a>
+      )}
     </div>
   );
 };
