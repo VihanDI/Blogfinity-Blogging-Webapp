@@ -1,0 +1,19 @@
+.pageContent{
+    margin-bottom: 4rem;
+}
+
+.contentTopPart{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    margin-left: 16rem;
+    margin-right: 16rem;
+    margin-top: 1rem;
+}
+
+.contentText{
+    font-family: 'Saira Condensed', sans-serif;
+    font-weight: 500;
+    font-size: xx-large;
+}
