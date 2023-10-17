@@ -5,6 +5,7 @@ interface CardProps {
   cardContent: string;
   cardImgSrc: string;
   cardBtnText: string;
+  cardLink: string;
 }
 
 const Card = ({
@@ -12,21 +13,20 @@ const Card = ({
   cardContent,
   cardImgSrc,
   cardBtnText,
+  cardLink,
 }: CardProps) => {
   return (
     <div className={styles.cardContainer}>
-      <div className={styles.cardBody}>
-        {cardImgSrc && (
-          <img className={styles.cardImage} src={cardImgSrc} alt="Card Image" />
-        )}
-        <h2 className={styles.cardTitle}>{cardTitle}</h2>
-        <p className={styles.cardContent}>{cardContent}</p>
-        {cardBtnText && (
-          <a className={styles.cardLink} href="cardPage">
-            {cardBtnText}
-          </a>
-        )}
-      </div>
+      {cardImgSrc && (
+        <img className={styles.cardImage} src={cardImgSrc} alt="Card Image" />
+      )}
+      <h2 className={styles.cardTitle}>{cardTitle}</h2>
+      <p className={styles.cardContent}>{cardContent}</p>
+      {cardBtnText && cardLink && (
+        <a className={styles.cardLink} href={cardLink}>
+          {cardBtnText}
+        </a>
+      )}
     </div>
   );
 };
