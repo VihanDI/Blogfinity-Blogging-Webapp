@@ -3,6 +3,7 @@ import { BiSearch } from "react-icons/bi";
 import { BlogModel } from "../models/blog.model";
 import Blog from "../components/Blog";
 import styles from "../styles/ReadPage.module.css";
+import * as BlogsApi from "../utils/blogs.api";
 
 const ReadPage = () => {
   const [blogs, setBlogs] = useState<BlogModel[]>([]);
@@ -10,11 +11,7 @@ const ReadPage = () => {
   useEffect(() => {
     async function loadBlogs() {
       try {
-        const response = await fetch("http://localhost:8080/api/blogs", {
-          method: "GET",
-        });
-
-        const blogs = await response.json();
+        const blogs = await BlogsApi.fetchBlogs();
         setBlogs(blogs);
       } catch (error) {
         console.error(error);
