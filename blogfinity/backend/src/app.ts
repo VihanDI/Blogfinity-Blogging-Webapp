@@ -1,8 +1,12 @@
 import "dotenv/config";
 import express, { NextFunction, Request, Response } from "express";
 import morgan from "morgan";
+import session from "express-session";
+import MongoStore from "connect-mongo";
 import createHttpError, { isHttpError } from "http-errors";
 import BlogRoute from "./routes/blog.route";
+import UserRoute from "./routes/user.route";
+import env from "./util/validateEnv";
 
 const app = express();
 
@@ -18,7 +22,24 @@ app.use(morgan("dev"));
 //for sending json to the express server
 app.use(express.json());
 
-//passing all the blog related routes to the blog route handler
+//middleware to handle sessions (including this in here is important)
+app.use(
+  session({
+    secret: env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      maxAge: 60 * 60 * 1000, // lifetime of a cookie
+    },
+    rolling: true, // automatically refresh cookie while user using the website
+    store: MongoStore.create({
+      mongoUrl: env.MONGO_CONNECTION_STRING,
+    }),
+  })
+);
+
+//passing all the blog related routes to the blog route and user route handler
+app.use("/api/users", UserRoute);
 app.use("/api/blogs", BlogRoute);
 
 //middleware for handling invalid routes

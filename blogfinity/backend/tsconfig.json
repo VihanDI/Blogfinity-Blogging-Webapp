@@ -7,9 +7,11 @@
     "outDir": "dist",
     "noImplicitAny": true,
     "forceConsistentCasingInFileNames": true,
-    "strict": true
+    "strict": true,
+    "typeRoots": ["node_modules/@types","@types"]
     //"esModuleInterop": true,
     //"skipLibCheck": true
   },
-  "include": ["src/**/*"],
+  "ts-node": {"files": true},
+  
 }
