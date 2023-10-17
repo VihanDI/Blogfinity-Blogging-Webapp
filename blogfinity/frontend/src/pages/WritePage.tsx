@@ -1,16 +1,14 @@
-import styles from "../styles/ReadPage.module.css";
-import Button from "../components/Button";
+import styles from "../styles/WritePage.module.css";
 import Form from "../components/Form";
 
 const WritePage = () => {
   return (
-    <div>
+    <div className={styles.pageContent}>
       <div className={styles.contentTopPart}>
         <p className={styles.contentText}>CREATE A NEW BLOG POST</p>
-        <Button buttonText="PUBLISH"></Button>
       </div>
       <div>
-        <Form></Form>
+        <Form onBlogSaved={() => {}}></Form>
       </div>
     </div>
   );

@@ -22,7 +22,7 @@ const ReadPage = () => {
     loadBlogs();
   }, []);
   return (
-    <div>
+    <div className={styles.blogFeed}>
       <div className={styles.contentTopPart}>
         <p className={styles.contentText}>BLOGFINITY RECOMMENDATIONS</p>
         <div className={styles.searchBar}>

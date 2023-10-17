@@ -26,7 +26,7 @@ export interface BlogInput {
 }
 
 export async function createBlog(blog: BlogInput): Promise<BlogModel> {
-  const response = await fetchData("/api/blogs", {
+  const response = await fetchData("http://localhost:8080/api/blogs", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
