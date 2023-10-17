@@ -19,3 +19,20 @@ export async function fetchBlogs(): Promise<BlogModel[]> {
 
   return response.json();
 }
+
+export interface BlogInput {
+  title: string;
+  content: string;
+}
+
+export async function createBlog(blog: BlogInput): Promise<BlogModel> {
+  const response = await fetchData("/api/blogs", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(blog),
+  });
+
+  return response.json();
+}
