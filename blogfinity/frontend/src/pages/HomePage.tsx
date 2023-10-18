@@ -1,5 +1,5 @@
-import Button from "../components/Button";
 import Card from "../components/Card";
+import LinkButton from "../components/LinkButton";
 import styles from "../styles/HomePage.module.css";
 
 const HomePage = () => {
@@ -22,7 +22,7 @@ const HomePage = () => {
             <p className={styles.seperateColorTextTwo}>INFINITY</p>
           </div>
         </div>
-        <Button buttonText="GET STARTED"></Button>
+        <LinkButton cardBtnText="GET STARTED" cardLink="/login"></LinkButton>
       </div>
       <div className={styles.homePageMiddleContent}>
         <div className={styles.homePageCards}>
@@ -31,7 +31,7 @@ const HomePage = () => {
             cardContent="BLOGFINITY PROVIDES YOU THE STAGE TO REACH YOUR AUDIENCE. BUILD YOUR WORLD AROUND YOUR PASSION AND SHARE IT AMONG MILLIONS OF USERS. READ AND EXPLORE OTHER WORLDS OF INFINITE TOPICS. THE ULTIMATE PLATFORM IS ONLY A ONE CLICK AWAY."
             cardBtnText="SIGN UP"
             cardImgSrc="https://picsum.photos/500/200"
-            cardLink="http://localhost:5173/login"
+            cardLink="http://localhost:5173/signup"
           ></Card>
           <Card
             cardTitle="MORE TOOLS TO HELP YOUR BLOGGING JOURNEY"

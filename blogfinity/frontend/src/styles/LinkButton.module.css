@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500&display=swap');
 
-.mainButton{
+.linkButton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 120px;
     height: 40px;
     background: black;
@@ -10,12 +13,13 @@
     font-weight: 500;
     font-size: larger;
     text-align: center;
+    text-decoration: none;
 }
 
-.mainButton:hover{
+.linkButton:hover{
     background: #393E46;
 }
 
-.mainButton:active{
+.linkButton:active{
     background: black;
 }

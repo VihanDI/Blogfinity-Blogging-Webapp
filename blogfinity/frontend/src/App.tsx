@@ -5,6 +5,7 @@ import ReadPage from "./pages/ReadPage";
 import HomePage from "./pages/HomePage";
 import WritePage from "./pages/WritePage";
 import LoginPage from "./pages/LoginPage";
+import SignupPage from "./pages/SignupPage";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/write" element={<WritePage />} />
           <Route path="/read" element={<ReadPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignupPage />} />
           <Route path="*" element={<h1>Page not Found</h1>} />
         </Routes>
       </Router>

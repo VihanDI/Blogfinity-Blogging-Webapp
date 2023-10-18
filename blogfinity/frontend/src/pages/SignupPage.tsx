@@ -1,18 +1,23 @@
 import Button from "../components/Button";
-import LinkButton from "../components/LinkButton";
 import UserInput from "../components/UserInput";
-import styles from "../styles/LoginPage.module.css";
-import { BiSolidUser, BiSolidLock } from "react-icons/bi";
+import styles from "../styles/SignupPage.module.css";
+import { BiSolidUser, BiSolidLock, BiSolidEnvelope } from "react-icons/bi";
 
-const LoginPage = () => {
+const SignupPage = () => {
   return (
     <div className={styles.container}>
       <div className={styles.formBox}>
         <div className={styles.title}>
-          <p>BLOGFINITY ACCOUNT</p>
-          <p className={styles.titleText}>SIGNIN</p>
+          <p className={styles.titleText}>CREATE BLOGFINITY ACCOUNT</p>
         </div>
         <div className={styles.form}>
+          <div className={styles.inputField}>
+            <p className={styles.inputFieldText}>USER EMAIL</p>
+            <div className={styles.inputfieldIcon}>
+              <BiSolidEnvelope className={styles.icon}></BiSolidEnvelope>
+            </div>
+            <UserInput></UserInput>
+          </div>
           <div className={styles.inputField}>
             <p className={styles.inputFieldText}>USERNAME</p>
             <div className={styles.inputfieldIcon}>
@@ -29,13 +34,11 @@ const LoginPage = () => {
           </div>
         </div>
         <div className={styles.formButtonContent}>
-          <Button buttonText="LOG IN"></Button>
-          <p className={styles.formText}>DON'T HAVE AN ACCOUNT?</p>
-          <LinkButton cardBtnText="SIGN UP" cardLink="/signup"></LinkButton>
+          <Button buttonText="SIGN UP"></Button>
         </div>
       </div>
     </div>
   );
 };
 
-export default LoginPage;
+export default SignupPage;
