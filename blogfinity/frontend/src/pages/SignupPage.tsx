@@ -1,4 +1,4 @@
-import Button from "../components/Button";
+import SubmitButton from "../components/SubmitButton";
 import UserInput from "../components/UserInput";
 import styles from "../styles/SignupPage.module.css";
 import { BiSolidUser, BiSolidLock, BiSolidEnvelope } from "react-icons/bi";
@@ -34,7 +34,7 @@ const SignupPage = () => {
           </div>
         </div>
         <div className={styles.formButtonContent}>
-          <Button buttonText="SIGN UP"></Button>
+          <SubmitButton buttonText="SIGN UP"></SubmitButton>
         </div>
       </div>
     </div>

@@ -53,3 +53,11 @@
     margin-right: 25%;
     margin-bottom: 1rem;
 }
+
+.cardLink:hover{
+    background: #393E46;
+}
+
+.cardLink:active{
+    background: black;
+}

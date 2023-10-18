@@ -1,5 +1,5 @@
-import Button from "../components/Button";
 import LinkButton from "../components/LinkButton";
+import SubmitButton from "../components/SubmitButton";
 import UserInput from "../components/UserInput";
 import styles from "../styles/LoginPage.module.css";
 import { BiSolidUser, BiSolidLock } from "react-icons/bi";
@@ -29,7 +29,7 @@ const LoginPage = () => {
           </div>
         </div>
         <div className={styles.formButtonContent}>
-          <Button buttonText="LOG IN"></Button>
+          <SubmitButton buttonText="LOG IN"></SubmitButton>
           <p className={styles.formText}>DON'T HAVE AN ACCOUNT?</p>
           <LinkButton cardBtnText="SIGN UP" cardLink="/signup"></LinkButton>
         </div>
