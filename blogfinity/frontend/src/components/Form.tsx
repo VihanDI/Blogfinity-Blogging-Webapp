@@ -3,6 +3,7 @@ import { BlogInput } from "../utils/blogs.api";
 import { useForm } from "react-hook-form";
 import * as BlogApi from "../utils/blogs.api";
 import { BlogModel } from "../models/blog.model";
+import SubmitButton from "./SubmitButton";
 
 interface FormProps {
   onBlogSaved: (blog: BlogModel) => void;
@@ -37,9 +38,7 @@ const Form = ({ onBlogSaved }: FormProps) => {
           placeholder="Blog Content"
           {...register("content", { required: "Require" })}
         ></textarea>
-        <button className={styles.formSubmitButton} type="submit">
-          PUBLISH
-        </button>
+        <SubmitButton buttonText="PUBLISH"></SubmitButton>
       </div>
     </form>
   );

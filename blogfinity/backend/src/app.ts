@@ -14,7 +14,12 @@ const app = express();
 const cors = require("cors");
 
 //middleware for cors
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
 
 //middleware for logging
 app.use(morgan("dev"));

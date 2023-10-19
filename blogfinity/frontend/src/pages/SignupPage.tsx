@@ -1,32 +1,42 @@
-import LinkButton from "../components/LinkButton";
 import SubmitButton from "../components/SubmitButton";
-import styles from "../styles/LoginPage.module.css";
-import { BiSolidUser, BiSolidLock } from "react-icons/bi";
+import styles from "../styles/SignupPage.module.css";
+import { BiSolidUser, BiSolidLock, BiSolidEnvelope } from "react-icons/bi";
+import { SignUpCredentials } from "../utils/users.api";
 import * as UserApi from "../utils/users.api";
-import { LoginCredentials } from "../utils/users.api";
 import { useForm } from "react-hook-form";
 
-const LoginPage = () => {
-  const { register, handleSubmit, reset } = useForm<LoginCredentials>();
+const SignupPage = () => {
+  const { register, handleSubmit, reset } = useForm<SignUpCredentials>();
 
-  async function onSubmit(input: LoginCredentials) {
+  async function onSubmit(input: SignUpCredentials) {
     try {
-      await UserApi.login(input);
+      await UserApi.signUp(input);
       reset();
     } catch (error) {
       console.error(error);
       alert(error);
     }
   }
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className={styles.container}>
         <div className={styles.formBox}>
           <div className={styles.title}>
-            <p>BLOGFINITY ACCOUNT</p>
-            <p className={styles.titleText}>SIGNIN</p>
+            <p className={styles.titleText}>CREATE BLOGFINITY ACCOUNT</p>
           </div>
           <div className={styles.form}>
+            <div className={styles.inputField}>
+              <p className={styles.inputFieldText}>USER EMAIL</p>
+              <div className={styles.inputfieldIcon}>
+                <BiSolidEnvelope className={styles.icon}></BiSolidEnvelope>
+              </div>
+              <input
+                className={styles.userInput}
+                type="email"
+                {...register("email", { required: "Required" })}
+              ></input>
+            </div>
             <div className={styles.inputField}>
               <p className={styles.inputFieldText}>USERNAME</p>
               <div className={styles.inputfieldIcon}>
@@ -50,9 +60,7 @@ const LoginPage = () => {
             </div>
           </div>
           <div className={styles.formButtonContent}>
-            <SubmitButton buttonText="LOG IN"></SubmitButton>
-            <p className={styles.formText}>DON'T HAVE AN ACCOUNT?</p>
-            <LinkButton cardBtnText="SIGN UP" cardLink="/signup"></LinkButton>
+            <SubmitButton buttonText="SIGN UP"></SubmitButton>
           </div>
         </div>
       </div>
@@ -60,4 +68,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default SignupPage;

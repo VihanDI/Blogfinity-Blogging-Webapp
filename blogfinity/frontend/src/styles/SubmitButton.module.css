@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500&display=swap');
 
-.mainButton{
+.submitButton{
     width: 120px;
     height: 40px;
     background: black;
@@ -12,10 +12,10 @@
     text-align: center;
 }
 
-.mainButton:hover{
+.submitButton:hover{
     background: #393E46;
 }
 
-.mainButton:active{
+.submitButton:active{
     background: black;
 }
