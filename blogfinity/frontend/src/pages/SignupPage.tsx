@@ -3,24 +3,14 @@ import styles from "../styles/SignupPage.module.css";
 import { BiSolidUser, BiSolidLock, BiSolidEnvelope } from "react-icons/bi";
 import { SignUpCredentials } from "../utils/users.api";
 import * as UserApi from "../utils/users.api";
-import { UserModel } from "../models/user.model";
 import { useForm } from "react-hook-form";
 
-interface SignupPageProps {
-  onSignupSuccessful: (user: UserModel) => void;
-}
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const SignupPage = ({ onSignupSuccessful }: SignupPageProps) => {
+const SignupPage = () => {
   const { register, handleSubmit, reset } = useForm<SignUpCredentials>();
 
   async function onSubmit(input: SignUpCredentials) {
     try {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const onSignupSuccessful = (user: UserModel) => {};
-
-      const newUser = await UserApi.signUp(input);
-      onSignupSuccessful(newUser);
+      await UserApi.signUp(input);
       reset();
     } catch (error) {
       console.error(error);
@@ -44,7 +34,7 @@ const SignupPage = ({ onSignupSuccessful }: SignupPageProps) => {
               <input
                 className={styles.userInput}
                 type="email"
-                {...register("email", { required: "Require" })}
+                {...register("email", { required: "Required" })}
               ></input>
             </div>
             <div className={styles.inputField}>
@@ -54,7 +44,7 @@ const SignupPage = ({ onSignupSuccessful }: SignupPageProps) => {
               </div>
               <input
                 className={styles.userInput}
-                {...register("username", { required: "Require" })}
+                {...register("username", { required: "Required" })}
               ></input>
             </div>
             <div className={styles.inputField}>
@@ -65,7 +55,7 @@ const SignupPage = ({ onSignupSuccessful }: SignupPageProps) => {
               <input
                 className={styles.userInput}
                 type="password"
-                {...register("password", { required: "Require" })}
+                {...register("password", { required: "Required" })}
               ></input>
             </div>
           </div>
