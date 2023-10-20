@@ -5,13 +5,19 @@ import { BiSolidUser, BiSolidLock } from "react-icons/bi";
 import * as UserApi from "../utils/users.api";
 import { LoginCredentials } from "../utils/users.api";
 import { useForm } from "react-hook-form";
+import { UserModel } from "../models/user.model";
 
-const LoginPage = () => {
+interface LoginPageProps {
+  onLoginSuccessful: (user: UserModel) => void;
+}
+
+const LoginPage = ({ onLoginSuccessful }: LoginPageProps) => {
   const { register, handleSubmit, reset } = useForm<LoginCredentials>();
 
   async function onSubmit(input: LoginCredentials) {
     try {
-      await UserApi.login(input);
+      const user = await UserApi.login(input);
+      onLoginSuccessful(user);
       reset();
     } catch (error) {
       console.error(error);
