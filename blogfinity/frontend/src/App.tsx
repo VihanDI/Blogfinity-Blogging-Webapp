@@ -1,23 +1,88 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import ReadPage from "./pages/ReadPage";
 import HomePage from "./pages/HomePage";
 import WritePage from "./pages/WritePage";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
+import { UserModel } from "./models/user.model";
+import * as UserApi from "./utils/users.api";
 
 function App() {
+  const [loggedInUser, setLoggedInUser] = useState<UserModel | null>(null);
+
+  useEffect(() => {
+    async function fetchLoggedInUser() {
+      try {
+        const user = await UserApi.getLoggedInUser();
+        setLoggedInUser(user);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchLoggedInUser();
+  }, []);
   return (
     <div>
       <Router>
-        <Navbar></Navbar>
+        <Navbar
+          loggedInUser={loggedInUser}
+          onLogoutSuccessful={() => {
+            setLoggedInUser(null);
+          }}
+        ></Navbar>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/write" element={<WritePage />} />
-          <Route path="/read" element={<ReadPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/signup" element={<SignupPage />} />
+          <Route
+            path="/write"
+            element={
+              loggedInUser ? (
+                <WritePage />
+              ) : (
+                <LoginPage
+                  onLoginSuccessful={(user) => {
+                    setLoggedInUser(user);
+                  }}
+                />
+              )
+            }
+          />
+          <Route
+            path="/read"
+            element={
+              loggedInUser ? (
+                <ReadPage />
+              ) : (
+                <LoginPage
+                  onLoginSuccessful={(user) => {
+                    setLoggedInUser(user);
+                  }}
+                />
+              )
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <LoginPage
+                onLoginSuccessful={(user) => {
+                  setLoggedInUser(user);
+                }}
+              />
+            }
+          />
+          <Route
+            path="/signup"
+            element={
+              <SignupPage
+                onSignupSuccessful={(user) => {
+                  setLoggedInUser(user);
+                }}
+              />
+            }
+          />
           <Route path="*" element={<h1>Page not Found</h1>} />
         </Routes>
       </Router>

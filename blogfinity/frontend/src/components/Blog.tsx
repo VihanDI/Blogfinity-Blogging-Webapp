@@ -13,8 +13,8 @@ const Blog = ({ blog }: BlogProps) => {
         cardTitle={title}
         cardContent={content}
         cardImgSrc="https://picsum.photos/500/200"
-        cardBtnText=""
-        cardLink=""
+        cardBtnText="READ"
+        cardLink="/"
       ></Card>
     </div>
   );

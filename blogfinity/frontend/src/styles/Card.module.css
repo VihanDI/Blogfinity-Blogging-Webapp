@@ -9,11 +9,12 @@
     flex-direction: column;
     margin: 0.5rem;
     background: #EBE4FF;
-    height: fit-content;
+    height: 32rem;
 }
 
 .cardImage{
-    width: 100%;
+    width: 30rem;
+    height: 14rem;
     border-radius: 1rem 1rem 0 0;
 }
 
@@ -25,6 +26,10 @@
     font-size: x-large;
 }
 
+.textContainer{
+    overflow: hidden;
+}
+
 .cardContent{
     margin: 0.5rem 5%;
     margin-bottom: 1rem;
@@ -32,6 +37,7 @@
     font-weight: 300;
     font-size: large;
     text-align: justify;
+    overflow-wrap: break-word;
 }
 
 .cardLink{

@@ -17,11 +17,15 @@ const Card = ({
 }: CardProps) => {
   return (
     <div className={styles.cardContainer}>
-      {cardImgSrc && (
-        <img className={styles.cardImage} src={cardImgSrc} alt="Card Image" />
-      )}
-      <h2 className={styles.cardTitle}>{cardTitle}</h2>
-      <p className={styles.cardContent}>{cardContent}</p>
+      <div>
+        {cardImgSrc && (
+          <img className={styles.cardImage} src={cardImgSrc} alt="Card Image" />
+        )}
+        <h2 className={styles.cardTitle}>{cardTitle}</h2>
+      </div>
+      <div className={styles.textContainer}>
+        <p className={styles.cardContent}>{cardContent}</p>
+      </div>
       {cardBtnText && cardLink && (
         <a className={styles.cardLink} href={cardLink}>
           {cardBtnText}
