@@ -23,6 +23,8 @@ export async function fetchBlogs(): Promise<BlogModel[]> {
 export interface BlogInput {
   title: string;
   content: string;
+  author: string;
+  imageUrl: string;
 }
 
 export async function createBlog(blog: BlogInput): Promise<BlogModel> {

@@ -7,9 +7,10 @@ import SubmitButton from "./SubmitButton";
 
 interface FormProps {
   onBlogSaved: (blog: BlogModel) => void;
+  loggedInUser: string;
 }
 
-const Form = ({ onBlogSaved }: FormProps) => {
+const Form = ({ onBlogSaved, loggedInUser }: FormProps) => {
   const { register, handleSubmit, reset } = useForm<BlogInput>();
 
   async function onSubmit(input: BlogInput) {
@@ -32,6 +33,19 @@ const Form = ({ onBlogSaved }: FormProps) => {
           placeholder="Blog Title"
           type="text"
           {...register("title", { required: "Require" })}
+        />
+        <input
+          className={styles.userInputSmall}
+          placeholder="Blog Author"
+          type="text"
+          defaultValue={loggedInUser}
+          {...register("author", { required: "Require" })}
+        />
+        <input
+          className={styles.userInputSmall}
+          placeholder="Blog Image URL"
+          type="text"
+          {...register("imageUrl", { required: "Require" })}
         />
         <textarea
           className={styles.userInputLarge}
