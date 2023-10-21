@@ -42,7 +42,9 @@ const Navbar = ({ loggedInUser, onLogoutSuccessful }: NavbarProps) => {
         <Link className={styles.navbarTab} to={"/read"}>
           READ
         </Link>
-        <BiSolidCog className={styles.settingsIcon}></BiSolidCog>
+        <Link to={"/manage"}>
+          <BiSolidCog className={styles.settingsIcon}></BiSolidCog>
+        </Link>
       </div>
     </div>
   );

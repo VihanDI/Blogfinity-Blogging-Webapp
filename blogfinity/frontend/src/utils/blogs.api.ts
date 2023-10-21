@@ -20,6 +20,23 @@ export async function fetchBlogs(): Promise<BlogModel[]> {
   return response.json();
 }
 
+export async function fetchBlogsByUsername(
+  loggedInUser: string
+): Promise<BlogModel[]> {
+  const response = await fetchData(
+    "http://localhost:8080/api/blogs/find/blogs",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username: loggedInUser }),
+    }
+  );
+
+  return response.json();
+}
+
 export interface BlogInput {
   title: string;
   content: string;
@@ -37,4 +54,27 @@ export async function createBlog(blog: BlogInput): Promise<BlogModel> {
   });
 
   return response.json();
+}
+
+export async function updateBlog(
+  blogId: string,
+  blog: BlogInput
+): Promise<BlogModel> {
+  const response = await fetchData(
+    "http://localhost:8080/api/blogs/" + blogId,
+    {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(blog),
+    }
+  );
+  return response.json();
+}
+
+export async function deleteBlog(blogId: string) {
+  await fetchData("http://localhost:8080/api/blogs/" + blogId, {
+    method: "DELETE",
+  });
 }

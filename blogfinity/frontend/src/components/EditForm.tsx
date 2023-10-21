@@ -1,24 +1,29 @@
-import styles from "../styles/Form.module.css";
-import { BlogInput } from "../utils/blogs.api";
 import { useForm } from "react-hook-form";
+import { BlogInput } from "../utils/blogs.api";
 import * as BlogApi from "../utils/blogs.api";
-import { BlogModel } from "../models/blog.model";
+import styles from "../styles/Form.module.css";
 import SubmitButton from "./SubmitButton";
+import { BlogModel } from "../models/blog.model";
 
-interface FormProps {
-  onBlogSaved: (blog: BlogModel) => void;
-  loggedInUser: string;
+interface EditFormProps {
+  blogToEdit?: BlogModel | null;
 }
 
-const Form = ({ onBlogSaved, loggedInUser }: FormProps) => {
-  const { register, handleSubmit, reset } = useForm<BlogInput>();
+const EditForm = ({ blogToEdit }: EditFormProps) => {
+  const { register, handleSubmit } = useForm<BlogInput>({
+    defaultValues: {
+      title: blogToEdit?.title,
+      imageUrl: blogToEdit?.imageUrl,
+      content: blogToEdit?.content,
+    },
+  });
 
   async function onSubmit(input: BlogInput) {
     try {
-      const blogResponse = await BlogApi.createBlog(input);
-      onBlogSaved(blogResponse);
-      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-      reset();
+      if (blogToEdit) {
+        await BlogApi.updateBlog(blogToEdit._id, input);
+        window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+      }
     } catch (error) {
       console.error(error);
       alert(error);
@@ -34,15 +39,6 @@ const Form = ({ onBlogSaved, loggedInUser }: FormProps) => {
           type="text"
           {...register("title", { required: "Require" })}
         />
-        {loggedInUser && (
-          <input
-            className={styles.userInputSmall}
-            placeholder="Blog Author"
-            type="text"
-            defaultValue={loggedInUser}
-            {...register("author", { required: "Require" })}
-          />
-        )}
         <input
           className={styles.userInputSmall}
           placeholder="Blog Image URL"
@@ -55,10 +51,10 @@ const Form = ({ onBlogSaved, loggedInUser }: FormProps) => {
           maxLength={4000}
           {...register("content", { required: "Require" })}
         ></textarea>
-        <SubmitButton buttonText="PUBLISH"></SubmitButton>
+        <SubmitButton buttonText="UPDATE"></SubmitButton>
       </div>
     </form>
   );
 };
 
-export default Form;
+export default EditForm;

@@ -5,7 +5,7 @@ interface BlogFeedCardProps {
   cardAuthor: string;
   cardImgSrc: string;
   cardBtnText: string;
-  cardLink: string;
+  handleClick: () => void;
 }
 
 const BlogFeedCard = ({
@@ -13,7 +13,7 @@ const BlogFeedCard = ({
   cardAuthor,
   cardImgSrc,
   cardBtnText,
-  cardLink,
+  handleClick,
 }: BlogFeedCardProps) => {
   return (
     <div className={styles.cardContainer}>
@@ -24,10 +24,16 @@ const BlogFeedCard = ({
         <h2 className={styles.cardTitle}>{cardTitle}</h2>
         <p className={styles.cardContent}>By {cardAuthor}</p>
       </div>
-      {cardBtnText && cardLink && (
-        <a className={styles.cardLink} href={cardLink}>
+      {cardBtnText && (
+        <button
+          onClick={(e) => {
+            handleClick();
+            e.stopPropagation();
+          }}
+          className={styles.mainButton}
+        >
           {cardBtnText}
-        </a>
+        </button>
       )}
     </div>
   );

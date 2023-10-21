@@ -9,6 +9,7 @@ import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import { UserModel } from "./models/user.model";
 import * as UserApi from "./utils/users.api";
+import ManagePage from "./pages/ManagePage";
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState<UserModel | null>(null);
@@ -81,6 +82,20 @@ function App() {
                   setLoggedInUser(user);
                 }}
               />
+            }
+          />
+          <Route
+            path="/manage"
+            element={
+              loggedInUser ? (
+                <ManagePage loggedInUser={loggedInUser.username}></ManagePage>
+              ) : (
+                <LoginPage
+                  onLoginSuccessful={(user) => {
+                    setLoggedInUser(user);
+                  }}
+                />
+              )
             }
           />
           <Route path="*" element={<h1>Page not Found</h1>} />
