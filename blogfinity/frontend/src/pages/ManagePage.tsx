@@ -3,7 +3,7 @@ import Blog from "../components/Blog";
 import styles from "../styles/ReadPage.module.css";
 import { BlogModel } from "../models/blog.model";
 import * as BlogsApi from "../utils/blogs.api";
-import WriteUpdatePage from "./WriteUpdatePage";
+import WriteUpdatePage from "../components/WriteUpdateFormView";
 
 interface ManagePageProps {
   loggedInUser: string;
@@ -13,6 +13,10 @@ const ManagePage = ({ loggedInUser }: ManagePageProps) => {
   const [blogs, setBlogs] = useState<BlogModel[]>([]);
   const [blogToEdit, setBlogToEdit] = useState<BlogModel | null>(null);
   const [toggleEditForm, setToggleEditForm] = useState(false);
+
+  function getToggleState(state: boolean) {
+    setToggleEditForm(state);
+  }
 
   function viewEditForm(blog: BlogModel) {
     setToggleEditForm(true);
@@ -62,7 +66,12 @@ const ManagePage = ({ loggedInUser }: ManagePageProps) => {
           </div>
         </div>
       )}
-      {toggleEditForm && <WriteUpdatePage blog={blogToEdit}></WriteUpdatePage>}
+      {toggleEditForm && (
+        <WriteUpdatePage
+          sendToggleState={getToggleState}
+          blog={blogToEdit}
+        ></WriteUpdatePage>
+      )}
     </div>
   );
 };

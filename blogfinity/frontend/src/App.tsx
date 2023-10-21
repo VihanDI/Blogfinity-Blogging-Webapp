@@ -10,6 +10,7 @@ import SignupPage from "./pages/SignupPage";
 import { UserModel } from "./models/user.model";
 import * as UserApi from "./utils/users.api";
 import ManagePage from "./pages/ManagePage";
+import Footer from "./components/Footer";
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState<UserModel | null>(null);
@@ -100,6 +101,7 @@ function App() {
           />
           <Route path="*" element={<h1>Page not Found</h1>} />
         </Routes>
+        <Footer></Footer>
       </Router>
     </div>
   );
