@@ -14,6 +14,10 @@ const ManagePage = ({ loggedInUser }: ManagePageProps) => {
   const [blogToEdit, setBlogToEdit] = useState<BlogModel | null>(null);
   const [toggleEditForm, setToggleEditForm] = useState(false);
 
+  function getToggleState(state: boolean) {
+    setToggleEditForm(state);
+  }
+
   function viewEditForm(blog: BlogModel) {
     setToggleEditForm(true);
     setBlogToEdit(blog);
@@ -62,7 +66,12 @@ const ManagePage = ({ loggedInUser }: ManagePageProps) => {
           </div>
         </div>
       )}
-      {toggleEditForm && <WriteUpdatePage blog={blogToEdit}></WriteUpdatePage>}
+      {toggleEditForm && (
+        <WriteUpdatePage
+          sendToggleState={getToggleState}
+          blog={blogToEdit}
+        ></WriteUpdatePage>
+      )}
     </div>
   );
 };
