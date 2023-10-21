@@ -39,7 +39,7 @@ function App() {
             path="/write"
             element={
               loggedInUser ? (
-                <WritePage />
+                <WritePage loggedInUser={loggedInUser.username} />
               ) : (
                 <LoginPage
                   onLoginSuccessful={(user) => {

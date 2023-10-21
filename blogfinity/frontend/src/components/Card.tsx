@@ -3,6 +3,7 @@ import styles from "../styles/Card.module.css";
 interface CardProps {
   cardTitle: string;
   cardContent: string;
+  cardAuthor: string;
   cardImgSrc: string;
   cardBtnText: string;
   cardLink: string;
@@ -11,6 +12,7 @@ interface CardProps {
 const Card = ({
   cardTitle,
   cardContent,
+  cardAuthor,
   cardImgSrc,
   cardBtnText,
   cardLink,
@@ -22,6 +24,7 @@ const Card = ({
           <img className={styles.cardImage} src={cardImgSrc} alt="Card Image" />
         )}
         <h2 className={styles.cardTitle}>{cardTitle}</h2>
+        <p className={styles.cardContent}>By {cardAuthor}</p>
       </div>
       <div className={styles.textContainer}>
         <p className={styles.cardContent}>{cardContent}</p>

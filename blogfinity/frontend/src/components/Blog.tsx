@@ -6,13 +6,14 @@ interface BlogProps {
 }
 
 const Blog = ({ blog }: BlogProps) => {
-  const { title, content } = blog;
+  const { title, content, author, imageUrl } = blog;
   return (
     <div>
       <Card
         cardTitle={title}
         cardContent={content}
-        cardImgSrc="https://picsum.photos/500/200"
+        cardAuthor={author}
+        cardImgSrc={imageUrl}
         cardBtnText="READ"
         cardLink="/"
       ></Card>
