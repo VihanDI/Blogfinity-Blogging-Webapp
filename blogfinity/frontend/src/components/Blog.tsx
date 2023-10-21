@@ -1,22 +1,21 @@
 import { BlogModel } from "../models/blog.model";
-import Card from "./Card";
+import BlogFeedCard from "./BlogFeedCard";
 
 interface BlogProps {
   blog: BlogModel;
 }
 
 const Blog = ({ blog }: BlogProps) => {
-  const { title, content, author, imageUrl } = blog;
+  const { title, author, imageUrl } = blog;
   return (
     <div>
-      <Card
+      <BlogFeedCard
         cardTitle={title}
-        cardContent={content}
         cardAuthor={author}
         cardImgSrc={imageUrl}
         cardBtnText="READ"
         cardLink="/"
-      ></Card>
+      ></BlogFeedCard>
     </div>
   );
 };

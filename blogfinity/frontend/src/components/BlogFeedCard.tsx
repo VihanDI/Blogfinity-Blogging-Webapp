@@ -1,20 +1,20 @@
-import styles from "../styles/Card.module.css";
+import styles from "../styles/BlogFeedCard.module.css";
 
-interface CardProps {
+interface BlogFeedCardProps {
   cardTitle: string;
-  cardContent: string;
+  cardAuthor: string;
   cardImgSrc: string;
   cardBtnText: string;
   cardLink: string;
 }
 
-const Card = ({
+const BlogFeedCard = ({
   cardTitle,
-  cardContent,
+  cardAuthor,
   cardImgSrc,
   cardBtnText,
   cardLink,
-}: CardProps) => {
+}: BlogFeedCardProps) => {
   return (
     <div className={styles.cardContainer}>
       <div>
@@ -22,9 +22,7 @@ const Card = ({
           <img className={styles.cardImage} src={cardImgSrc} alt="Card Image" />
         )}
         <h2 className={styles.cardTitle}>{cardTitle}</h2>
-      </div>
-      <div className={styles.textContainer}>
-        <p className={styles.cardContent}>{cardContent}</p>
+        <p className={styles.cardContent}>By {cardAuthor}</p>
       </div>
       {cardBtnText && cardLink && (
         <a className={styles.cardLink} href={cardLink}>
@@ -35,4 +33,4 @@ const Card = ({
   );
 };
 
-export default Card;
+export default BlogFeedCard;
