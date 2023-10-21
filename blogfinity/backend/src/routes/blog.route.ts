@@ -5,6 +5,7 @@ const router = express.Router();
 
 router.get("/", BlogController.getBlogs);
 router.get("/:blogId", BlogController.getBlog);
+router.post("/find/blogs", BlogController.getBlogsByUsername);
 router.post("/", BlogController.createBlog);
 router.patch("/:blogId", BlogController.updateBlog);
 router.delete("/:blogId", BlogController.deleteBlog);

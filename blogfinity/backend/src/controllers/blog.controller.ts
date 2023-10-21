@@ -13,6 +13,31 @@ export const getBlogs: RequestHandler = async (req, res, next) => {
   }
 };
 
+interface getBlogsByUsernameBody {
+  username?: string;
+}
+
+export const getBlogsByUsername: RequestHandler<
+  unknown,
+  unknown,
+  getBlogsByUsernameBody,
+  unknown
+> = async (req, res, next) => {
+  const username = req.body.username;
+
+  try {
+    if (!username) {
+      throw createHttpError(400, "Parameters missing");
+    }
+
+    //throw Error("Test Error");
+    const blogs = await BlogModel.find({ author: username }).exec();
+    res.status(200).json(blogs);
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const getBlog: RequestHandler = async (req, res, next) => {
   const blogId = req.params.blogId;
 

@@ -20,6 +20,23 @@ export async function fetchBlogs(): Promise<BlogModel[]> {
   return response.json();
 }
 
+export async function fetchBlogsByUsername(
+  loggedInUser: string
+): Promise<BlogModel[]> {
+  const response = await fetchData(
+    "http://localhost:8080/api/blogs/find/blogs",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username: loggedInUser }),
+    }
+  );
+
+  return response.json();
+}
+
 export interface BlogInput {
   title: string;
   content: string;

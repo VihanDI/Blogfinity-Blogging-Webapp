@@ -88,7 +88,7 @@ function App() {
             path="/manage"
             element={
               loggedInUser ? (
-                <ManagePage></ManagePage>
+                <ManagePage loggedInUser={loggedInUser.username}></ManagePage>
               ) : (
                 <LoginPage
                   onLoginSuccessful={(user) => {
