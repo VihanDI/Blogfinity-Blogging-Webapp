@@ -1,4 +1,4 @@
-import EditForm from "../components/EditForm";
+import EditForm from "./EditForm";
 import { BlogModel } from "../models/blog.model";
 import styles from "../styles/WritePage.module.css";
 

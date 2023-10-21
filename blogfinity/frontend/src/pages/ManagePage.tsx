@@ -3,7 +3,7 @@ import Blog from "../components/Blog";
 import styles from "../styles/ReadPage.module.css";
 import { BlogModel } from "../models/blog.model";
 import * as BlogsApi from "../utils/blogs.api";
-import WriteUpdatePage from "./WriteUpdatePage";
+import WriteUpdatePage from "../components/WriteUpdateFormView";
 
 interface ManagePageProps {
   loggedInUser: string;
