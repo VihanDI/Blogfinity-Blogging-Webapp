@@ -3,6 +3,7 @@ import Blog from "../components/Blog";
 import styles from "../styles/ReadPage.module.css";
 import { BlogModel } from "../models/blog.model";
 import * as BlogsApi from "../utils/blogs.api";
+import WriteUpdatePage from "./WriteUpdatePage";
 
 interface ManagePageProps {
   loggedInUser: string;
@@ -10,6 +11,13 @@ interface ManagePageProps {
 
 const ManagePage = ({ loggedInUser }: ManagePageProps) => {
   const [blogs, setBlogs] = useState<BlogModel[]>([]);
+  const [blogToEdit, setBlogToEdit] = useState<BlogModel | null>(null);
+  const [toggleEditForm, setToggleEditForm] = useState(false);
+
+  function viewEditForm(blog: BlogModel) {
+    setToggleEditForm(true);
+    setBlogToEdit(blog);
+  }
 
   async function deleteBlog(blog: BlogModel) {
     try {
@@ -35,20 +43,26 @@ const ManagePage = ({ loggedInUser }: ManagePageProps) => {
     loadBlogs();
   }, [loggedInUser]);
   return (
-    <div className={styles.blogFeed}>
-      <div className={styles.contentTopPart}>
-        <p className={styles.contentText}>MY BLOGS</p>
-      </div>
-      <div className={styles.blogCardView}>
-        {blogs.map((blog) => (
-          <Blog
-            buttonText="DELETE"
-            blog={blog}
-            handleClick={deleteBlog}
-            key={blog._id}
-          ></Blog>
-        ))}
-      </div>
+    <div>
+      {!toggleEditForm && (
+        <div className={styles.blogFeed}>
+          <div className={styles.contentTopPart}>
+            <p className={styles.contentText}>MY BLOGS</p>
+          </div>
+          <div className={styles.blogCardView}>
+            {blogs.map((blog) => (
+              <Blog
+                handleCardClick={viewEditForm}
+                buttonText="DELETE"
+                blog={blog}
+                handleClick={deleteBlog}
+                key={blog._id}
+              ></Blog>
+            ))}
+          </div>
+        </div>
+      )}
+      {toggleEditForm && <WriteUpdatePage blog={blogToEdit}></WriteUpdatePage>}
     </div>
   );
 };

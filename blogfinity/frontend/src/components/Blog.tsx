@@ -5,9 +5,15 @@ interface BlogProps {
   blog: BlogModel;
   buttonText: string;
   handleClick: (blog: BlogModel) => void;
+  handleCardClick: (blog: BlogModel) => void;
 }
 
-const Blog = ({ blog, buttonText, handleClick }: BlogProps) => {
+const Blog = ({
+  blog,
+  buttonText,
+  handleClick,
+  handleCardClick,
+}: BlogProps) => {
   const { title, author, imageUrl } = blog;
 
   function handleOnClick() {
@@ -15,7 +21,7 @@ const Blog = ({ blog, buttonText, handleClick }: BlogProps) => {
   }
 
   return (
-    <div>
+    <div onClick={() => handleCardClick(blog)}>
       <BlogFeedCard
         cardTitle={title}
         cardAuthor={author}

@@ -25,7 +25,13 @@ const BlogFeedCard = ({
         <p className={styles.cardContent}>By {cardAuthor}</p>
       </div>
       {cardBtnText && (
-        <button onClick={handleClick} className={styles.mainButton}>
+        <button
+          onClick={(e) => {
+            handleClick();
+            e.stopPropagation();
+          }}
+          className={styles.mainButton}
+        >
           {cardBtnText}
         </button>
       )}
