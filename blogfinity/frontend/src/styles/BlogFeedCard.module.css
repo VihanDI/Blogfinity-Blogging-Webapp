@@ -67,3 +67,30 @@
 .cardLink:active{
     background: black;
 }
+
+.mainButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Saira Condensed', sans-serif;
+    font-weight: 500;
+    font-size: larger;
+    width: 90px;
+    height: 36px;
+    padding: 0.25rem;
+    border-radius: 30px;
+    background-color: black;
+    color: white;
+    margin-top: 0rem;
+    margin-left: 75%;
+    margin-right: 25%;
+    margin-bottom: 1rem;
+}
+
+.mainButton:hover{
+    background: #393E46;
+}
+
+.mainButton:active{
+    background: black;
+}

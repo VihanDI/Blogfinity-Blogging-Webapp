@@ -8,6 +8,9 @@ import * as BlogsApi from "../utils/blogs.api";
 const ReadPage = () => {
   const [blogs, setBlogs] = useState<BlogModel[]>([]);
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  function readBlog(blog: BlogModel) {}
+
   useEffect(() => {
     async function loadBlogs() {
       try {
@@ -35,7 +38,12 @@ const ReadPage = () => {
       </div>
       <div className={styles.blogCardView}>
         {blogs.map((blog) => (
-          <Blog blog={blog} key={blog._id}></Blog>
+          <Blog
+            buttonText="READ"
+            blog={blog}
+            handleClick={readBlog}
+            key={blog._id}
+          ></Blog>
         ))}
       </div>
     </div>

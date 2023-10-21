@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { BiSearch } from "react-icons/bi";
 import Blog from "../components/Blog";
 import styles from "../styles/ReadPage.module.css";
 import { BlogModel } from "../models/blog.model";
@@ -11,6 +10,16 @@ interface ManagePageProps {
 
 const ManagePage = ({ loggedInUser }: ManagePageProps) => {
   const [blogs, setBlogs] = useState<BlogModel[]>([]);
+
+  async function deleteBlog(blog: BlogModel) {
+    try {
+      await BlogsApi.deleteBlog(blog._id);
+      setBlogs(blogs.filter((existingBlog) => existingBlog._id !== blog._id));
+    } catch (error) {
+      console.error(error);
+      alert(error);
+    }
+  }
 
   useEffect(() => {
     async function loadBlogs() {
@@ -28,18 +37,16 @@ const ManagePage = ({ loggedInUser }: ManagePageProps) => {
   return (
     <div className={styles.blogFeed}>
       <div className={styles.contentTopPart}>
-        <p className={styles.contentText}>BLOGFINITY RECOMMENDATIONS</p>
-        <div className={styles.searchBar}>
-          <p className={styles.searchBarText}>SEARCH</p>
-          <input className={styles.searchBarInput}></input>
-          <button className={styles.searchBarButton}>
-            <BiSearch className={styles.searchBarIcon}></BiSearch>
-          </button>
-        </div>
+        <p className={styles.contentText}>MY BLOGS</p>
       </div>
       <div className={styles.blogCardView}>
         {blogs.map((blog) => (
-          <Blog blog={blog} key={blog._id}></Blog>
+          <Blog
+            buttonText="DELETE"
+            blog={blog}
+            handleClick={deleteBlog}
+            key={blog._id}
+          ></Blog>
         ))}
       </div>
     </div>
