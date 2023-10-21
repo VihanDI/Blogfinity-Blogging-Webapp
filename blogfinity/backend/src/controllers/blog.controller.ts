@@ -38,6 +38,8 @@ export const getBlog: RequestHandler = async (req, res, next) => {
 interface CreateBlogBody {
   title?: string; // marked as optional since the value can be undefine before handling the errors
   content?: string; // if this is optional use content? instead of content
+  author?: string;
+  imageUrl?: string;
 }
 
 export const createBlog: RequestHandler<
@@ -48,6 +50,8 @@ export const createBlog: RequestHandler<
 > = async (req, res, next) => {
   const title = req.body.title;
   const content = req.body.content;
+  const author = req.body.author;
+  const imageUrl = req.body.imageUrl;
 
   try {
     if (!title) {
@@ -58,9 +62,19 @@ export const createBlog: RequestHandler<
       throw createHttpError(400, "Blog must have a content");
     }
 
+    if (!author) {
+      throw createHttpError(400, "Blog must have an author");
+    }
+
+    if (!imageUrl) {
+      throw createHttpError(400, "Blog must have an image URL");
+    }
+
     const newBlog = await BlogModel.create({
       title: title,
       content: content,
+      author: author,
+      imageUrl: imageUrl,
     });
 
     res.status(201).json(newBlog);
@@ -76,6 +90,8 @@ interface UpdateBlogParams {
 interface UpdateBlogBody {
   title?: string;
   content?: string;
+  author?: string;
+  imageUrl?: string;
 }
 
 export const updateBlog: RequestHandler<
@@ -87,6 +103,7 @@ export const updateBlog: RequestHandler<
   const blogId = req.params.blogId;
   const newTitle = req.body.title;
   const newContent = req.body.content;
+  const newImageUrl = req.body.imageUrl;
 
   try {
     //checking fot the validity of the blogId
@@ -102,6 +119,10 @@ export const updateBlog: RequestHandler<
       throw createHttpError(400, "Blog must have a content");
     }
 
+    if (!newImageUrl) {
+      throw createHttpError(400, "Blog must have an image URL");
+    }
+
     const blog = await BlogModel.findById(blogId).exec();
 
     //handling errors of the object not found in the database
@@ -111,6 +132,7 @@ export const updateBlog: RequestHandler<
 
     blog.title = newTitle;
     blog.content = newContent;
+    blog.imageUrl = newImageUrl;
 
     const updatedBlog = await blog.save();
 
